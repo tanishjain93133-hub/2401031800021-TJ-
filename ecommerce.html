@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoWear – Sustainable Fashion Marketplace</title>
+  <!-- Font Awesome Icons (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+    }
+    body {
+      background-color: #f9fbf8;
+      color: #1e2f2d;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    /* utility */
+    .btn {
+      display: inline-block;
+      background-color: #2b5e4c;
+      color: white;
+      padding: 10px 24px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .btn-outline {
+      background-color: transparent;
+      border: 2px solid #2b5e4c;
+      color: #2b5e4c;
+    }
+    .btn-outline:hover {
+      background-color: #2b5e4c;
+      color: white;
+    }
+    .btn:hover {
+      background-color: #1d4237;
+    }
+    h1, h2, h3 {
+      color: #1d3b34;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    section {
+      padding: 60px 0;
+      border-bottom: 1px solid #d0e0d8;
+    }
+    /* navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      flex-wrap: wrap;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1e5a48;
+    }
+    .logo span {
+      font-weight: 300;
+      color: #4f7b6b;
+    }
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #1d3b34;
+      font-weight: 500;
+    }
+    .nav-links a:hover {
+      color: #2b5e4c;
+      border-bottom: 2px solid #2b5e4c;
+    }
+    /* hero */
+    .hero {
+      background: linear-gradient(130deg, #e3f2e9, #c8e0d4);
+      border-radius: 48px;
+      padding: 64px 48px;
+      margin: 40px 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .hero-content {
+      max-width: 600px;
+    }
+    .hero-content h1 {
+      font-size: 3.2rem;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      margin-top: 28px;
+    }
+    /* product grid */
+    .product-grid, .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px;
+      margin-top: 32px;
+    }
+    .product-card, .category-card {
+      background: white;
+      border-radius: 24px;
+      padding: 24px 16px;
+      box-shadow: 0 8px 24px rgba(0, 40, 20, 0.06);
+      transition: 0.15s;
+      border: 1px solid #deede6;
+      text-align: center;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 28px -8px #acc7bb;
+    }
+    .price {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #1e5a48;
+      margin: 12px 0 8px;
+    }
+    .eco-badge {
+      background-color: #cae3d9;
+      color: #155744;
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-block;
+      margin: 8px 0;
+    }
+    .btn-small {
+      background: #1e5a48;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      display: inline-block;
+    }
+    /* category chips */
+    .category-grid {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    .category-card {
+      background: #eff7f2;
+      font-weight: 600;
+      font-size: 1.2rem;
+      padding: 32px 8px;
+    }
+    /* impact */
+    .impact-stats {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 30px;
+      background: #1d4237;
+      color: white;
+      border-radius: 60px;
+      padding: 48px 24px;
+      margin-top: 30px;
+    }
+    .stat-item {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    .stat-item small {
+      display: block;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #c0dfd2;
+    }
+    /* testimonials/newsletter */
+    .testimonial-grid {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin: 30px 0;
+    }
+    .testimonial {
+      background: white;
+      padding: 28px;
+      border-radius: 40px;
+      flex: 1 1 280px;
+      box-shadow: 0 4px 12px #ddece4;
+    }
+    .newsletter {
+      background: #d1ebe0;
+      border-radius: 60px;
+      padding: 48px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+      justify-content: center;
+    }
+    .newsletter input {
+      padding: 14px 20px;
+      width: 300px;
+      border: none;
+      border-radius: 60px;
+      font-size: 1rem;
+      border: 1px solid #9bc0b0;
+    }
+    /* shop filters */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 30px;
+      background: #ecf5f0;
+      padding: 20px 28px;
+      border-radius: 60px;
+      margin: 30px 0;
+      align-items: center;
+    }
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .filter-group select, .filter-group input {
+      padding: 8px 12px;
+      border-radius: 30px;
+      border: 1px solid #bcd9cd;
+      background: white;
+    }
+    /* product detail page simulation */
+    .product-detail-panel {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      background: white;
+      border-radius: 48px;
+      padding: 40px;
+      margin: 40px 0;
+      border: 1px solid #bcd9cd;
+    }
+    .detail-left {
+      flex: 1 1 280px;
+    }
+    .detail-right {
+      flex: 2 1 400px;
+    }
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .quantity-selector input {
+      width: 70px;
+      padding: 10px;
+      border-radius: 40px;
+      border: 1px solid;
+    }
+    .review-box {
+      background: #f4faf7;
+      padding: 20px;
+      border-radius: 32px;
+      margin: 20px 0;
+    }
+    /* blog cards */
+    .blog-card {
+      background: white;
+      padding: 32px;
+      border-radius: 40px;
+      margin: 30px 0;
+    }
+    /* team section */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+    .team-member {
+      background: #eef7f2;
+      border-radius: 40px;
+      padding: 24px 12px;
+      text-align: center;
+    }
+    /* contact */
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      background: white;
+      border-radius: 48px;
+      padding: 48px;
+    }
+    .contact-details {
+      flex: 1 1 260px;
+    }
+    .contact-form {
+      flex: 2 1 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .contact-form input, .contact-form textarea {
+      padding: 14px 20px;
+      border-radius: 40px;
+      border: 1px solid #bcd9cd;
+      width: 100%;
+    }
+    /* footer */
+    .footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 40px 0 20px;
+      color: #327561;
+    }
+    hr {
+      border: 1px solid #c4d9cf;
+    }
+    .fa-brands, .fa-regular, .fas {
+      margin-right: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- 🧭 NAVBAR (same across all pages) -->
+    <nav class="navbar">
+      <div class="logo">EcoWear<span>.</span></div>
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#blog">Blog</a>
+        <a href="#about">About Us</a>
+        <a href="#contact">Contact</a>
+        <a href="#"><i class="fas fa-user"></i> Login</a>
+        <a href="#"><i class="fas fa-shopping-cart"></i> Cart</a>
+      </div>
+    </nav>
+
+    <!-- 🏠 HOME PAGE CONTENT (integrated) -->
+    <!-- Hero Section -->
+    <section id="home" style="padding-top: 0; border-bottom: none;">
+      <div class="hero">
+        <div class="hero-content">
+          <h1>Sustainable Fashion for a Better Tomorrow</h1>
+          <p style="font-size: 1.3rem; color: #235544;">Discover eco-friendly, ethical, and stylish fashion made with love for the planet.</p>
+          <div class="hero-buttons">
+            <a href="#" class="btn">Shop Now</a>
+            <a href="#" class="btn btn-outline">Explore Brands</a>
+          </div>
+        </div>
+        <div style="font-size: 4rem; opacity: 0.6;">🌿♻️</div>
+      </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section>
+      <h2>Our Featured Sustainable Products</h2>
+      <div class="product-grid">
+        <div class="product-card"><i class="fas fa-tshirt" style="font-size:2rem;color:#2b5e4c;"></i><h3>Organic Cotton T-Shirt</h3><div class="price">₹899</div><span class="eco-badge">Eco 🌱</span><br><a href="#" class="btn-small">View</a></div>
+        <div class="product-card"><i class="fas fa-tshirt" style="font-size:2rem;color:#2b5e4c;"></i><h3>Bamboo Fabric Shirt</h3><div class="price">₹1299</div><span class="eco-badge">Eco 🌱</span><br><a href="#" class="btn-small">View</a></div>
+        <div class="product-card"><i class="fas fa-vest" style="font-size:2rem;color:#2b5e4c;"></i><h3>Recycled Denim Jacket</h3><div class="price">₹2499</div><span class="eco-badge">Eco 🌱</span><br><a href="#" class="btn-small">View</a></div>
+        <div class="product-card"><i class="fas fa-shopping-bag" style="font-size:2rem;color:#2b5e4c;"></i><h3>Eco Tote Bag</h3><div class="price">₹499</div><span class="eco-badge">Eco 🌱</span><br><a href="#" class="btn-small">View</a></div>
+      </div>
+      <div style="text-align: center; margin-top: 28px;"><a href="#" class="btn">View All Products →</a></div>
+    </section>
+
+    <!-- Categories -->
+    <section>
+      <h2>Shop by Category</h2>
+      <div class="category-grid">
+        <div class="category-card">🧑 Men’s Collection</div>
+        <div class="category-card">👩 Women’s Collection</div>
+        <div class="category-card">👜 Accessories</div>
+        <div class="category-card">🧶 Organic Fabrics</div>
+        <div class="category-card">🌱 Vegan Products</div>
+      </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section>
+      <h2>Our Environmental Impact</h2>
+      <div class="impact-stats">
+        <div class="stat-item">🌳 10,000+ <small>Trees Saved</small></div>
+        <div class="stat-item">♻️ 5,000+ <small>Plastic Bottles Recycled</small></div>
+        <div class="stat-item">👕 2,000+ <small>Happy Customers</small></div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section>
+      <h2>What our customers say</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial">⭐ “Great quality and eco-friendly products!” <br>— Customer Review</div>
+        <div class="testimonial">⭐ “Love the concept of sustainable fashion.” <br>— Happy Buyer</div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section>
+      <div class="newsletter">
+        <div><h3 style="font-size: 1.8rem;">Stay Updated with Eco Trends</h3><p>Tips & exclusive offers</p></div>
+        <div><input type="email" placeholder="Your email address"> <button class="btn" style="margin-left: 8px;">Subscribe</button></div>
+      </div>
+    </section>
+
+    <!-- 🛍 SHOP PAGE (anchor) -->
+    <section id="shop">
+      <h2>Explore Sustainable Products</h2>
+      <!-- Filters -->
+      <div class="filter-bar">
+        <div class="filter-group"><label>Category</label> <select><option>All</option><option>Men</option><option>Women</option></select></div>
+        <div class="filter-group"><label>Price</label> <input type="text" placeholder="Min - Max"></div>
+        <div class="filter-group"><label>Material</label> <select><option>Organic Cotton</option><option>Bamboo</option><option>Hemp</option></select></div>
+        <div class="filter-group"><label>Eco Score</label> <select><option>9+</option><option>7+</option></select></div>
+      </div>
+      <!-- Product cards with eco badge etc -->
+      <div class="product-grid">
+        <div class="product-card"><h4>Hemp Blend Hoodie</h4><p>Soft & durable</p><div class="price">₹1899</div><span class="eco-badge">Eco score 8/10</span><br><button class="btn-small">Add to cart</button></div>
+        <div class="product-card"><h4>Bamboo Sunglasses</h4><p>handcrafted</p><div class="price">₹999</div><span class="eco-badge">Eco score 9/10</span><br><button class="btn-small">Add to cart</button></div>
+        <div class="product-card"><h4>Recycled Scarf</h4><p>upcycled fabric</p><div class="price">₹699</div><span class="eco-badge">Eco score 10/10</span><br><button class="btn-small">Add to cart</button></div>
+        <div class="product-card"><h4>Organic Linen Shirt</h4><p>breathable</p><div class="price">₹1599</div><span class="eco-badge">Eco score 9/10</span><br><button class="btn-small">Add to cart</button></div>
+      </div>
+    </section>
+
+    <!-- 👕 PRODUCT DETAILS example -->
+    <section>
+      <h2>Product Detail Example</h2>
+      <div class="product-detail-panel">
+        <div class="detail-left"><i class="fas fa-vest" style="font-size:5rem; color: #2b5e4c;"></i></div>
+        <div class="detail-right">
+          <h2>Recycled Denim Jacket</h2>
+          <p class="price">₹2499</p>
+          <p>Classic jacket made from post-consumer denim. <br> <strong>About:</strong> This product is made from 100% organic material and produced through ethical manufacturing processes.</p>
+          <p><strong>Material:</strong> Organic Cotton | <strong>Eco Score:</strong> 9/10 | <strong>Carbon Footprint:</strong> Low</p>
+          <div class="quantity-selector"><label>Qty:</label> <input type="number" min="1" value="1"></div>
+          <button class="btn">Add to Cart</button>
+          <div class="review-box"><strong>⭐ Customer Reviews:</strong> “Very warm and ethical!” – Riya</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 📝 BLOG SECTION -->
+    <section id="blog">
+      <h2>Latest from our blog</h2>
+      <div class="blog-card">
+        <h3>Why Sustainable Fashion Matters</h3>
+        <p>Sustainable fashion focuses on reducing environmental impact by using eco-friendly materials and ethical production practices. It helps reduce pollution and supports fair wages for workers.</p>
+      </div>
+      <div class="blog-card">
+        <h3>Fast Fashion vs Sustainable Fashion</h3>
+        <p>Fast fashion encourages overproduction and waste, while sustainable fashion promotes long-lasting, ethical, and environmentally responsible clothing choices.</p>
+      </div>
+    </section>
+
+    <!-- 🌿 ABOUT US PAGE -->
+    <section id="about">
+      <h2>About Our Project</h2>
+      <p style="max-width:800px; font-size:1.2rem;">We are students of Silver Oak University, Division 4CSE-B-020, developing this Sustainable Fashion Marketplace as part of our Web Technology with UI/UX assignment. Our mission is to promote eco-friendly fashion and create awareness about sustainable living.</p>
+      <h3 style="margin-top:36px;">👥 Our Team</h3>
+      <div class="team-grid">
+        <div class="team-member">Ankur Debnath</div>
+        <div class="team-member">Tanish Jain</div>
+        <div class="team-member">Dev Trivedi</div>
+        <div class="team-member">Kshetrapal Singh</div>
+        <div class="team-member">Tasneem Hasan</div>
+      </div>
+      <p style="text-align:center;"><strong>Division 4CSE-B-020 | Silver Oak University</strong></p>
+    </section>
+
+    <!-- 📞 CONTACT PAGE -->
+    <section id="contact">
+      <h2>Get in Touch</h2>
+      <div class="contact-row">
+        <div class="contact-details">
+          <p><i class="fas fa-envelope"></i> ecowear@gmail.com</p>
+          <p><i class="fas fa-phone"></i> +91 9876543210</p>
+          <p><i class="fas fa-map-marker-alt"></i> Silver Oak University, Ahmedabad</p>
+        </div>
+        <div class="contact-form">
+          <input type="text" placeholder="Your Name">
+          <input type="email" placeholder="Email">
+          <textarea rows="4" placeholder="Message"></textarea>
+          <button class="btn" style="width:fit-content;">Submit</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🔻 FOOTER -->
+    <hr>
+    <footer class="footer">
+      <div>© 2026 EcoWear. All Rights Reserved.</div>
+      <div>Quick Links: Home | Shop | Blog | About | Contact</div>
+      <div>Follow Us: <i class="fab fa-instagram"></i> <i class="fab fa-facebook"></i> <i class="fab fa-twitter"></i></div>
+    </footer>
+  </div> <!-- container -->
+  <!-- small disclaimer: all data included as per assignment -->
+</body>
+</html>
